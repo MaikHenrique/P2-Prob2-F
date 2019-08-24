@@ -22,21 +22,21 @@ public class ContaCorrente {
 
         Operacao operacao = new Operacao(this, TipoOperacao.SAIDA, valor);
         this.saldo = operacao.retorno();
-        System.out.println("O cliente sacou " + valor + "/nConta Corrente atual: " + this.saldo);
+        System.out.println("O cliente sacou R$" + valor + "/nConta Corrente atual: R$" + this.saldo);
     }
 
     public void depositar(double valor) {
 
         Operacao operacao = new Operacao(this, TipoOperacao.ENTRADA, valor);
         this.saldo = operacao.retorno();
-        System.out.println("O cliente depositou " + valor + "/nConta Corrente atual: " + this.saldo);
+        System.out.println("O cliente depositou R$" + valor + "/nConta Corrente atual: R$" + this.saldo);
     }
 
     public void transferir(double valor, ContaCorrente contaDestino) {
 
-        Operacao operacao = new Operacao(this, TipoOperacao.SAIDA, valor);
+        OperacaoTranferencia operacao = new OperacaoTranferencia(this, TipoOperacao.SAIDA, valor, contaDestino);
         this.saldo = operacao.retorno();
-        System.out.println("O cliente transferiu " + valor + " para " + contaDestino + "/nConta Corrente atual: " + this.saldo);
+        System.out.println("O cliente transferiu R$" + valor + " para " + contaDestino + "/nConta Corrente atual: R$" + this.saldo);
     }
 
     private void receberTransferencia(double valor, ContaCorrente origem) {
@@ -44,6 +44,12 @@ public class ContaCorrente {
         Operacao operacao = new Operacao(this, TipoOperacao.ENTRADA, valor);
         this.saldo = operacao.retorno();
         System.out.println("notobserver.ContaCorrente.receberTransferencia()");
+    }
+
+    public void receberTransferenciaPublico(double valor, ContaCorrente origem) {
+
+        receberTransferencia(valor, origem);
+
     }
 
     public int getNumero() {
