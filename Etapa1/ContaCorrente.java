@@ -21,24 +21,28 @@ public class ContaCorrente {
     public void sacar(double valor) {
 
         Operacao operacao = new Operacao(this, TipoOperacao.SAIDA, valor);
-        System.out.println("O cliente sacou " + valor + "/nConta Corrente atual: " + operacao.retorno());
+        this.saldo = operacao.retorno();
+        System.out.println("O cliente sacou " + valor + "/nConta Corrente atual: " + this.saldo);
     }
 
     public void depositar(double valor) {
 
         Operacao operacao = new Operacao(this, TipoOperacao.ENTRADA, valor);
-        System.out.println("O cliente depositou " + valor + "/nConta Corrente atual: " + operacao.retorno());
+        this.saldo = operacao.retorno();
+        System.out.println("O cliente depositou " + valor + "/nConta Corrente atual: " + this.saldo);
     }
 
     public void transferir(double valor, ContaCorrente contaDestino) {
 
         Operacao operacao = new Operacao(this, TipoOperacao.SAIDA, valor);
-        System.out.println("O cliente transferiu " + valor + " para " + contaDestino + "/nConta Corrente atual: " + operacao.retorno());
+        this.saldo = operacao.retorno();
+        System.out.println("O cliente transferiu " + valor + " para " + contaDestino + "/nConta Corrente atual: " + this.saldo);
     }
 
     private void receberTransferencia(double valor, ContaCorrente origem) {
 
         Operacao operacao = new Operacao(this, TipoOperacao.ENTRADA, valor);
+        this.saldo = operacao.retorno();
         System.out.println("notobserver.ContaCorrente.receberTransferencia()");
     }
 
