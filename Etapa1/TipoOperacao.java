@@ -1,8 +1,7 @@
-
-package P2_Prob2_Etapa1_F;
+package notobserver;
 
 public enum TipoOperacao {
-    //SAIDA
-    //ENTRADA
-    
+
+    SAIDA, ENTRADA;
+
 }

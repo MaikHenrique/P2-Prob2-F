@@ -1,16 +1,41 @@
+package notobserver;
 
-package P2_Prob2_Etapa1_F;
-
-import java.util.Date;
+import java.time.LocalDate;
 
 public class Operacao {
-    private float valor;
-    private float saldoAnterior;
+
+    private double valor;
+    private double saldoAnterior;
     private TipoOperacao tipo;
     private ContaCorrente conta;
-    private Date data;
+    private LocalDate data;
 
-    public float getValor() {
+    public Operacao(ContaCorrente conta, TipoOperacao tipo, double valor) {
+
+        this.conta = conta;
+        this.tipo = tipo;
+        this.valor = valor;
+        this.saldoAnterior = conta.getSaldo();
+        this.data = LocalDate.now();
+
+    }
+
+    public double retorno() {
+
+        switch (this.tipo) {
+            case ENTRADA:
+                return this.saldoAnterior + this.valor;
+
+            case SAIDA:
+                return this.saldoAnterior - this.valor;
+
+            default:
+                return -1;
+        }
+
+    }
+
+    public double getValor() {
         return valor;
     }
 
@@ -18,7 +43,7 @@ public class Operacao {
         this.valor = valor;
     }
 
-    public float getSaldoAnterior() {
+    public double getSaldoAnterior() {
         return saldoAnterior;
     }
 
@@ -42,13 +67,12 @@ public class Operacao {
         this.conta = conta;
     }
 
-    public Date getData() {
+    public LocalDate getData() {
         return data;
     }
 
-    public void setData(Date data) {
+    public void setData(LocalDate data) {
         this.data = data;
     }
-    
-    
+
 }

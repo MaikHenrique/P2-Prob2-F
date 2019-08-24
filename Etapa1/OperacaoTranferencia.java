@@ -1,7 +1,7 @@
-
-package P2_Prob2_Etapa1_F;
+package notobserver;
 
 public class OperacaoTranferencia {
+
     private ContaCorrente contraPartida;
 
     public ContaCorrente getContraPartida() {
@@ -11,6 +11,5 @@ public class OperacaoTranferencia {
     public void setContraPartida(ContaCorrente contraPartida) {
         this.contraPartida = contraPartida;
     }
-    
-    
+
 }

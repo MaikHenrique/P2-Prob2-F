@@ -1,9 +1,15 @@
 package notobserver;
 
-public class ClientePessoaJuridica {
+public class ClientePessoaJuridica extends Cliente {
 
     private String cnpj;
     private String servidorJMS;
+
+    public ClientePessoaJuridica(String nome, String telFixo, String telCelular, String cnpj, String servidorJMS) {
+        super(nome, telFixo, telCelular);
+        this.cnpj = cnpj;
+        this.servidorJMS = servidorJMS;
+    }
 
     public String getCnpj() {
         return cnpj;

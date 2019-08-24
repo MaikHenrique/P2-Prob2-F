@@ -6,6 +6,12 @@ public class Cliente {
     private String telFixo;
     private String telCelular;
 
+    public Cliente(String nome, String telFixo, String telCelular) {
+        this.nome = nome;
+        this.telFixo = telFixo;
+        this.telCelular = telCelular;
+    }
+
     public String getNome() {
         return nome;
     }
