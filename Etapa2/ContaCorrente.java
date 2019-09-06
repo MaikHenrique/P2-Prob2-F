@@ -6,7 +6,7 @@ public class ContaCorrente extends Observable{
 
     //lista de servicos
     
-    public ArrayList<Object> servico = new ArrayList();
+    // public ArrayList<Object> servico = new ArrayList();
     private int numero;
     private int agencia;
     private Cliente cliente;
@@ -18,18 +18,17 @@ public class ContaCorrente extends Observable{
         this.agencia = agencia;
         this.cliente = cliente;
         this.saldo = 0;
-
     }
-
-    public void addServico(Object serv){
-        servico.add(serv);
-        notifyObservers();
-    }
-    
-    public void removeServico (Object serv){
-        servico.remove(serv);
-        notifyObservers();
-    }
+//          
+//    public void addServico(Object serv){
+//        servico.add(serv);
+//        notifyObservers();
+//    }
+//    
+//    public void removeServico (Object serv){
+//        servico.remove(serv);
+//        notifyObservers();
+//    }
     
     //Cliente João, Conta 1-12345, Saque de 500.0 -Serviço de Análise de Fluxo de Caixa
     //System.out.println("Cliente " + cliente.getNome() + ", Conta " + numero + ", Saque de " + valor + "-Serviço de Análise de Fluxo de Caixa")
@@ -38,7 +37,7 @@ public class ContaCorrente extends Observable{
         Operacao operacao = new Operacao(this, TipoOperacao.SAIDA, valor);
         this.saldo = operacao.retorno();
         System.out.println("O cliente sacou R$" + valor + "/nConta Corrente atual: R$" + this.saldo);
-
+        notifyObservers();
     }
 
     public void depositar(double valor) {
@@ -46,6 +45,7 @@ public class ContaCorrente extends Observable{
         Operacao operacao = new Operacao(this, TipoOperacao.ENTRADA, valor);
         this.saldo = operacao.retorno();
         System.out.println("O cliente depositou R$" + valor + "/nConta Corrente atual: R$" + this.saldo);
+        notifyObservers();
     }
 
     public void transferir(double valor, ContaCorrente contaDestino) {
@@ -53,6 +53,7 @@ public class ContaCorrente extends Observable{
         OperacaoTranferencia operacao = new OperacaoTranferencia(this, TipoOperacao.SAIDA, valor, contaDestino);
         this.saldo = operacao.retorno();
         System.out.println("O cliente transferiu R$" + valor + " para " + contaDestino + "/nConta Corrente atual: R$" + this.saldo);
+        notifyObservers();
     }
 
     private void receberTransferencia(double valor, ContaCorrente origem) {
@@ -60,14 +61,13 @@ public class ContaCorrente extends Observable{
         Operacao operacao = new Operacao(this, TipoOperacao.ENTRADA, valor);
         this.saldo = operacao.retorno();
         System.out.println("notobserver.ContaCorrente.receberTransferencia()");
+        notifyObservers();
     }
-
-    
     
     public void receberTransferenciaPublico(double valor, ContaCorrente origem) {
 
         receberTransferencia(valor, origem);
-
+        notifyObservers();
     }
 
     public int getNumero() {

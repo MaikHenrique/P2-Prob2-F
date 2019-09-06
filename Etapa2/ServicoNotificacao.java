@@ -14,7 +14,7 @@ import java.util.Observer;
  */
 public class ServicoNotificacao implements Observer {
 
-    Observable cc;
+    private Observable contaCorrente;
     
     
     public ServicoNotificacao (Observable contaCorrente){
@@ -28,7 +28,8 @@ public class ServicoNotificacao implements Observer {
         
         if (o instanceof ContaCorrente){
             ContaCorrente contaCorrente = (ContaCorrente) o;
-            final Cliente cliente = contaCorrente.g;
+            //final Cliente cliente = contaCorrente.ge;
+            System.out.println("Notifica serviço!!!");
             
         }
     }

@@ -14,9 +14,27 @@ import java.util.Observer;
  */
 public class ServicoBaixaAutomatica implements Observer{
 
+    private Observable contaCorrente;
+    
+    
+    public ServicoBaixaAutomatica (Observable contaCorrente){
+        this.contaCorrente = contaCorrente;
+        contaCorrente.addObserver(this);
+        
+    }
+    
     @Override
     public void update(Observable o, Object o1) {
-
+        
+        if (o instanceof ContaCorrente){
+            ContaCorrente contaCorrente = (ContaCorrente) o;
+            //final Cliente cliente = contaCorrente.ge;
+            System.out.println("Notifica baixa automática!!!");
+            
+        }
     }
+    
+    
+    
     
 }
